@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from featchtelegram import send_message
+
 driver = webdriver.Chrome()
 
 
@@ -71,16 +73,23 @@ def trackroleta():
             sequencia = 0
         if resp == True:
             print("GREEN", end="")
+            message: str = "GREEN"
             if sequencia != 0:
                 print(" - Sequencia de", sequencia + 1, "GREENs")
+                message += f" - Sequencia de {sequencia+1} GREENs"
             else:
                 print("")
+            send_message('7862862108:AAEARORzD7rLcyl0MflNTC_R8OTnI0g2Oy0','6545737367',message)
+
         else:
             print("RED", end="")
+            message: str = "RED"
             if sequencia != 0:
-                print(" - Sequencia de", sequencia + 1, "RED")
+                print(" - Sequencia de", sequencia + 1, "REDs")
+                message += f" - Sequencia de {sequencia+1} REDs"
             else:
                 print("")
+            send_message('7862862108:AAEARORzD7rLcyl0MflNTC_R8OTnI0g2Oy0', '6545737367', message)
         ultimarsp = resp
 
     else:
@@ -104,7 +113,7 @@ def main():
 
     while True:
         trackroleta()
-        time.sleep(10)
+        time.sleep(1.5)
 
 
 if __name__ == '__main__':
